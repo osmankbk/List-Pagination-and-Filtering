@@ -16,39 +16,21 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally
    scoped to that function.
 ***/
-const storageUl = document.querySelector('.student-list');
-const stuDetails = document.querySelectorAll('.student-details');
-const joinDetails = document.querySelectorAll('.join-details');
+const pageDiv = document.querySelector('.page');
+const studentList = pageDiv.querySelector('.student-list');
 
 
-
-    const student =[
-      {
-        name: document.querySelectorAll('h3'),
-        pic: document.querySelectorAll('.avatar'),
-        email: document.querySelectorAll('.email'),
-        joinDate: document.querySelectorAll('.date')
-      }
-];
-
-    for(let i = 0; i < student.length; i++){
-      let name = student[i].name;
-      let pic = student[i].pic;
-      let email = student[i].email;
-      let dateJoined = student[i].joinDate;
-      
-  };
-
-
-
-
-
-
-
-
-
-
-
+const showPage = (list, page) => {
+  for(let i = 0; i < list.length; i++){
+    const first = page[i][0];
+    const last = page[i][9];
+    if(list[i] >= first && list[i] <= last ){
+      list[i].style.display = 'block';
+    } else {
+      list[i].style.display = 'none';
+    }
+  }
+};
 /***
    Create the `showPage` function to hide all of the items in the
    list except for the ten you want to show.
