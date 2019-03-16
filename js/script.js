@@ -24,15 +24,15 @@ const joinDetails = document.querySelectorAll('.join-details');
 
 const student = [
   {
-    name: stuDetails.querySelector('h3'),
-    pic: stuDetails.querySelector('.avatar'),
-    email: stuDetails.querySelector('.email'),
-    joinDate: joinDetails.querySelector('.date')
+    name: document.querySelector('h3'),
+    pic: document.querySelectorAll('.avatar'),
+    email: document.querySelectorAll('.email'),
+    joinDate: document.querySelectorAll('.date')
   }
 ];
 
-console.log(storageUl);
 
+console.log(student);
 
 
 
