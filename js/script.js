@@ -22,17 +22,24 @@ const joinDetails = document.querySelectorAll('.join-details');
 
 
 
-const student = [
-  {
-    name: document.querySelector('h3'),
-    pic: document.querySelectorAll('.avatar'),
-    email: document.querySelectorAll('.email'),
-    joinDate: document.querySelectorAll('.date')
-  }
+    const student =[
+      {
+        name: document.querySelectorAll('h3'),
+        pic: document.querySelectorAll('.avatar'),
+        email: document.querySelectorAll('.email'),
+        joinDate: document.querySelectorAll('.date')
+      }
 ];
 
+    for(let i = 0; i < student.length; i++){
+      let name = student[i].name;
+      let pic = student[i].pic;
+      let email = student[i].email;
+      let dateJoined = student[i].joinDate;
+      
+  };
 
-console.log(student);
+
 
 
 
@@ -64,7 +71,6 @@ console.log(student);
    Create the `appendPageLinks function` to generate, append, and add
    functionality to the pagination buttons.
 ***/
-
 
 
 
