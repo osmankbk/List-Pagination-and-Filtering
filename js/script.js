@@ -17,7 +17,7 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 const pageDiv = document.querySelector('.page');
-const studentList = pageDiv.querySelector('.student-list');
+const studentList = pageDiv.querySelectorAll('.student-list');
 
 
 /***
@@ -35,18 +35,22 @@ const studentList = pageDiv.querySelector('.student-list');
        "invoke" the function
 ***/
 const showPage = (list, page) => {
-  for(let i = 0; i < list.length; i++){
-    const first = 10 * page;
-    const last = 10 * (page + 1) - 1;
-    if( list[i] >= first && list[i] <= last ){
-      list[i].style.display = 'block';
-    } else {
-      list[i].style.display = 'none';
+  for(let i = 0; i <= list.length; i++){
+    let item = list[i];
+    const first = (page * 10) - 10;
+    const last = (page * 10) - 1;
+    console.log(first);
+    console.log(last);
+    if ( item >= first && item <= last ){
+      item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
     }
+    console.log(item);
   }
 };
-showPage(studentList, 1);
 
+console.log(showPage(studentList, 1));
 
 
 /***
@@ -54,7 +58,7 @@ showPage(studentList, 1);
    functionality to the pagination buttons.
 ***/
 
-    const appendPageLinks = (list) => {
+    /*const appendPageLinks = (list) => {
     const numberOfPages = Math.ceil (list / 10);
 
     const paginationDiv = document.createElement('div');
@@ -72,6 +76,6 @@ showPage(studentList, 1);
 
     }
 };
-
+*/
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
