@@ -22,8 +22,8 @@ const studentList = pageDiv.querySelector('.student-list');
 
 const showPage = (list, page) => {
   for(let i = 0; i < list.length; i++){
-    const first = page[i][0];
-    const last = page[i][9];
+    const first = (10 * page);
+    const last = 10 * (page + 1) - 1;
     if(list[i] >= first && list[i] <= last ){
       list[i].style.display = 'block';
     } else {
