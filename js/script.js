@@ -20,7 +20,6 @@ const pageDiv = document.querySelector('.page');
 const studentList = pageDiv.querySelector('.student-list');
 
 
-
 /***
    Create the `showPage` function to hide all of the items in the
    list except for the ten you want to show.
@@ -37,15 +36,16 @@ const studentList = pageDiv.querySelector('.student-list');
 ***/
 const showPage = (list, page) => {
   for(let i = 0; i < list.length; i++){
-    const first = (10 * page);
+    const first = 10 * page;
     const last = 10 * (page + 1) - 1;
-    if(list[i] >= first && list[i] <= last ){
+    if( list[i] >= first && list[i] <= last ){
       list[i].style.display = 'block';
     } else {
       list[i].style.display = 'none';
     }
   }
 };
+showPage(studentList, 1);
 
 
 
@@ -54,7 +54,7 @@ const showPage = (list, page) => {
    functionality to the pagination buttons.
 ***/
 
-const appendPageLinks = (list) => {
+    const appendPageLinks = (list) => {
     const numberOfPages = Math.ceil (list / 10);
 
     const paginationDiv = document.createElement('div');
@@ -70,8 +70,8 @@ const appendPageLinks = (list) => {
       pageLi.appendChild(pageLink);
       numberOfPages[i].appendChild(pageLi);
 
-
     }
 };
+
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
