@@ -17,7 +17,7 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 const pageDiv = document.querySelector('.page');
-const studentList = document.getElementsByTagName('li');
+const studentList = document.querySelectorAll('.student-item');
 
 
 /***
@@ -47,7 +47,7 @@ const showPage = (list, page) => {
   }
 };
 
-console.log(showPage(studentList, 1));
+showPage(studentList, 1);
 
 
 
@@ -69,18 +69,19 @@ console.log(showPage(studentList, 1));
     const pageLi = document.createElement('li');
     const pageLink = document.createElement('a');
       pageLink.href = '#';
-      pageLink.textContent = i;
+      pageLink.textContent = i + 1;
       pageLi.appendChild(pageLink);
       paginationUl.appendChild(pageLi);
     pageLink.addEventListener('click', (e) => {
+      e.preventDefault();
         if(e.target.tagName === 'A'){
-        showPage(studentList, i);
+        showPage(studentList, i + 1);
       }
     });
 
 }
 
 };
-console.log(appendPageLinks(studentList));
+appendPageLinks(studentList);
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
