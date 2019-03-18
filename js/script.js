@@ -72,9 +72,10 @@ console.log(showPage(studentList, 1));
       pageLink.textContent = i;
       pageLi.appendChild(pageLink);
       paginationUl.appendChild(pageLi);
-    pageLink.addEventListener('click', () => {
-
+    pageLink.addEventListener('click', (e) => {
+        if(e.target.tagName === 'A'){
         showPage(studentList, i);
+      }
     });
 
 }
