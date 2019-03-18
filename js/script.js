@@ -37,8 +37,6 @@ const studentList = document.getElementsByTagName('li');
 const showPage = (list, page) => {
   const first = (page * 10) - 10;
   const last = (page * 10) - 1;
-  console.log(first);
-  console.log(last);
   for(let i = 0; i < list.length; i++){
     if ( i >= first && i <= last ){
       list[i].style.display = 'block';
@@ -60,27 +58,28 @@ console.log(showPage(studentList, 1));
 ***/
 
     const appendPageLinks = (list) => {
-    const numberOfPages = Math.ceil (list / 10);
+    const numberOfPages = Math.ceil (list.length / 10);
 
     const paginationDiv = document.createElement('div');
-      paginationDiv.class = 'pagination';
+      paginationDiv.className = 'pagination';
       pageDiv.appendChild(paginationDiv);
     const paginationUl = document.createElement('ul');
       paginationDiv.appendChild(paginationUl);
-    for(let i = 0; i < numberOfPages.length; i++){
+    for(let i = 0; i < numberOfPages; i++){
     const pageLi = document.createElement('li');
     const pageLink = document.createElement('a');
       pageLink.href = '#';
       pageLink.textContent = i;
       pageLi.appendChild(pageLink);
       paginationUl.appendChild(pageLi);
-    pageLink.addEventListener('click', (e) => {
-      showPage(studentList, numberOfPages[i]);
+    pageLink.addEventListener('click', () => {
+
+        showPage(studentList, i);
     });
 
+}
 
-    }
 };
-
+console.log(appendPageLinks(studentList));
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
