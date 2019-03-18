@@ -17,8 +17,9 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 const pageDiv = document.querySelector('.page');
-const studentList = pageDiv.querySelectorAll('.student-list');
-
+const studentList = document.getElementsByTagName('li');
+console.log(studentList);
+const maxStudents = 10;
 
 /***
    Create the `showPage` function to hide all of the items in the
@@ -35,22 +36,23 @@ const studentList = pageDiv.querySelectorAll('.student-list');
        "invoke" the function
 ***/
 const showPage = (list, page) => {
-  for(let i = 0; i <= list.length; i++){
-    let item = list[i];
-    const first = (page * 10) - 10;
-    const last = (page * 10) - 1;
-    console.log(first);
-    console.log(last);
-    if ( item >= first && item <= last ){
-      item.style.display = 'block';
+  const first = (page * 10) - 10;
+  const last = (page * 10) - 1;
+  console.log(first);
+  console.log(last);
+  for(let i = 0; i < list.length; i++){
+    if ( i >= first && i <= last ){
+      list[i].style.display = 'block';
       } else {
-        item.style.display = 'none';
+        list[i].style.display = 'none';
     }
-    console.log(item);
+
   }
 };
 
 console.log(showPage(studentList, 1));
+
+
 
 
 /***
