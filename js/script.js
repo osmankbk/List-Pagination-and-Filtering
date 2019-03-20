@@ -87,6 +87,8 @@ const showPage = (list, page) => {
 };
 
 const search = () => {
+  const list = document.getElementsByTagName('h3');
+  console.log(list);
   const searchDiv = document.createElement('div');
   const searchInput = document.createElement('input');
   const searchButton = document.createElement('button');
@@ -98,11 +100,13 @@ const search = () => {
     searchDiv.appendChild(searchButton);
     pageHeader.appendChild(searchDiv);
   searchButton.addEventListener('click', () => {
-      for(let i = 0; i < studentList.length; i++){
-          if(searchInput.value === studentList[i]){
-            studentList[i].style.display = 'block';
+      for(let i = 0; i < list.length; i++){
+          const listParent = list[i].parentNode.parentNode;
+          const listText = list[i].textContent;
+          if(searchInput.value.toLowerCase() === listText){
+            listParent.style.display = 'block';
           } else {
-            
+            listParent.style.display = 'none';
           }
       }
 
@@ -110,7 +114,6 @@ const search = () => {
 };
 
 search();
-
 
 
 
