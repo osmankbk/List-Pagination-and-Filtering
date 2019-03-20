@@ -47,10 +47,6 @@ const showPage = (list, page) => {
   }
 };
 
-showPage(studentList, 1);
-
-
-
 
 /***
    Create the `appendPageLinks function` to generate, append, and add
@@ -74,14 +70,21 @@ showPage(studentList, 1);
       paginationUl.appendChild(pageLi);
     pageLink.addEventListener('click', (e) => {
       e.preventDefault();
-        if(e.target.tagName === 'A'){
-        showPage(studentList, i + 1);
+      showPage(studentList, i + 1);
+      const target = e.target;
+      const links = document.getElementsByTagName('a');
+        if(target.tagName === 'A'){
+      for(let i = 0; i < links.length; i++){
+        links[i].classList.remove('active');
+      }
+        target.className = 'active';
       }
     });
 
 }
 
 };
+showPage(studentList, 1);
 appendPageLinks(studentList);
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
