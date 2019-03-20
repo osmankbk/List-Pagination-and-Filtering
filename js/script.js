@@ -86,7 +86,7 @@ const showPage = (list, page) => {
 
 };
 const errorMessage = () => {
-  const error = document.createElement('h3');
+  const error = document.createElement('p');
     error.className = 'error';
     error.textContent = `Name not found. Please enter a valid name and try again`;
     pageDiv.appendChild(error);
