@@ -85,6 +85,14 @@ const showPage = (list, page) => {
 }
 
 };
+const errorMessage = () => {
+  const error = `<P>Name not found. Please enter a valid name and try again</p>`;
+    document.write(error);
+    return error;
+};
+
+const searchedList = [];
+
 
 const search = () => {
   const list = document.getElementsByTagName('h3');
@@ -105,8 +113,10 @@ const search = () => {
           const listText = list[i].textContent;
           if(searchInput.value.toLowerCase() === listText){
             listParent.style.display = 'block';
+            searchedList.push(list[i]);
           } else {
             listParent.style.display = 'none';
+
           }
       }
 
