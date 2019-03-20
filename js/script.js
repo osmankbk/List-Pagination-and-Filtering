@@ -86,9 +86,11 @@ const showPage = (list, page) => {
 
 };
 const errorMessage = () => {
-  const error = `<P>Name not found. Please enter a valid name and try again</p>`;
-    document.write(error);
-    return error;
+  const error = document.createElement('h3');
+    error.className = 'error';
+    error.textContent = `Name not found. Please enter a valid name and try again`;
+    pageDiv.appendChild(error);
+
 };
 
 const searchedList = [];
@@ -96,7 +98,7 @@ const searchedList = [];
 
 const search = () => {
   const list = document.getElementsByTagName('h3');
-  console.log(list);
+
   const searchDiv = document.createElement('div');
   const searchInput = document.createElement('input');
   const searchButton = document.createElement('button');
@@ -109,14 +111,15 @@ const search = () => {
     pageHeader.appendChild(searchDiv);
   searchButton.addEventListener('click', () => {
       for(let i = 0; i < list.length; i++){
-          const listParent = list[i].parentNode.parentNode;
+          const search = searchInput.value.toLowerCase();
+          const listGParent = list[i].parentNode.parentNode;
           const listText = list[i].textContent;
-          if(searchInput.value.toLowerCase() === listText){
-            listParent.style.display = 'block';
+          if(listText.includes(search)){
+            listGParent.style.display = 'block';
             searchedList.push(list[i]);
           } else {
-            listParent.style.display = 'none';
-
+            listGParent.style.display = 'none';
+            errorMessage();
           }
       }
 
@@ -124,7 +127,6 @@ const search = () => {
 };
 
 search();
-
 
 
 
