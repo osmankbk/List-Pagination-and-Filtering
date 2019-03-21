@@ -16,6 +16,7 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally
    scoped to that function.
 ***/
+//these variables grab the details of the students in the listing
 const pageDiv = document.querySelector('.page');
 const studentList = document.querySelectorAll('.student-item');
 const pageHeader = document.querySelector('.page-header');
@@ -90,7 +91,24 @@ const errorMessage = () => {
     error.className = 'error';
     error.textContent = `Name not found. Please enter a valid name and try again`;
     pageDiv.appendChild(error);
+    console.log(error.parentNode);
+};
 
+
+const removeErrorMessage = () => {
+  const getError = document.querySelector('.error');
+    if(getError){
+      getError.parentNode.removeChild(getError);
+    }
+    getError;
+};
+
+const removeLinks = () => {
+  const removeLinks = document.querySelector('.pagination');
+    if(removeLinks){
+      pageDiv.removeChild(removeLinks);
+
+    }
 };
 
 const searchedList = [];
@@ -117,9 +135,21 @@ const search = () => {
           if(listText.includes(search)){
             listGParent.style.display = 'block';
             searchedList.push(list[i]);
+
           } else {
             listGParent.style.display = 'none';
+          }
+          if (searchedList.length <= 0){
+            removeLinks();
             errorMessage();
+          } else if (searchedList.length <= 10){
+            showPage(studentList, 1);
+            removeLinks();
+            removeErrorMessage();
+          } else {
+            showPage(studentList, 1);
+            appendPageLinks(studentList);
+            removeErrorMessage();
           }
       }
 
