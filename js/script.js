@@ -56,13 +56,23 @@ const showPage = (list, page) => {
 ***/
 
     const appendPageLinks = (list) => {
+      const removePagination = () => {
+        const removePagi = document.querySelector('.pagination');
+          if(removePagi){
+            removePagi.parentNode.removeChild(removePagi);
+          }
+      }
+      removePagination();
+
     const numberOfPages = Math.ceil (list.length / 10);
 
     const paginationDiv = document.createElement('div');
       paginationDiv.className = 'pagination';
       pageDiv.appendChild(paginationDiv);
+
     const paginationUl = document.createElement('ul');
       paginationDiv.appendChild(paginationUl);
+
     for(let i = 0; i < numberOfPages; i++){
     const pageLi = document.createElement('li');
     const pageLink = document.createElement('a');
@@ -70,12 +80,14 @@ const showPage = (list, page) => {
       pageLink.textContent = i + 1;
       pageLi.appendChild(pageLink);
       paginationUl.appendChild(pageLi);
+
     pageLink.addEventListener('click', (e) => {
       e.preventDefault();
       showPage(studentList, i + 1);
       const target = e.target;
       const links = document.getElementsByTagName('a');
         if(target.tagName === 'A'){
+
       for(let i = 0; i < links.length; i++){
         links[i].classList.remove('active');
       }
@@ -91,28 +103,24 @@ const errorMessage = () => {
     error.className = 'error';
     error.textContent = `Name not found. Please enter a valid name and try again`;
     pageDiv.appendChild(error);
-    console.log(error.parentNode);
-};
-
-
-const removeErrorMessage = () => {
-  const getError = document.querySelector('.error');
-    if(getError){
-      getError.parentNode.removeChild(getError);
-    }
-    getError;
 };
 
 const removeLinks = () => {
   const removeLinks = document.querySelector('.pagination');
     if(removeLinks){
-      pageDiv.removeChild(removeLinks);
-
+      removeLinks.parentNode.removeChild(removeLinks);
     }
 };
 
-const searchedList = [];
+const removeErrorMessage = () => {
+  const getError = document.querySelector('.error');
+    if(getError){
+      pageDiv.removeChild(getError);
+    }
+};
 
+
+const searchedList = [];
 
 const search = () => {
   const list = document.getElementsByTagName('h3');
@@ -120,40 +128,41 @@ const search = () => {
   const searchDiv = document.createElement('div');
   const searchInput = document.createElement('input');
   const searchButton = document.createElement('button');
+
     searchButton.textContent = 'Search';
     searchInput.type = 'text';
     searchInput.placeholder = 'Search for students';
     searchDiv.className = 'student-search';
+
     searchDiv.appendChild(searchInput);
     searchDiv.appendChild(searchButton);
     pageHeader.appendChild(searchDiv);
+
   searchButton.addEventListener('click', () => {
       for(let i = 0; i < list.length; i++){
+          //const hideList = list[i];
           const search = searchInput.value.toLowerCase();
           const listGParent = list[i].parentNode.parentNode;
           const listText = list[i].textContent;
+
           if(listText.includes(search)){
             listGParent.style.display = 'block';
-            searchedList.push(list[i]);
-
+            searchedList.push(listGParent);
           } else {
             listGParent.style.display = 'none';
           }
-          if (searchedList.length <= 0){
-            removeLinks();
-            errorMessage();
-          } else if (searchedList.length <= 10){
-            showPage(studentList, 1);
-            removeLinks();
-            removeErrorMessage();
-          } else {
-            showPage(studentList, 1);
-            appendPageLinks(studentList);
-            removeErrorMessage();
-          }
-      }
+        }
+        if (searchedList.length <= 0){
+          errorMessage();
+        } else if (searchedList <= 10){
+          showPage(studentList, 1);
+          removeLinks();
+
+        }
 
   });
+
+
 };
 
 search();
