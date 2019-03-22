@@ -140,25 +140,28 @@ const search = () => {
 
   searchButton.addEventListener('click', () => {
       for(let i = 0; i < list.length; i++){
-          //const hideList = list[i];
-          const search = searchInput.value.toLowerCase();
-          const listGParent = list[i].parentNode.parentNode;
-          const listText = list[i].textContent;
+        const search = searchInput.value.toLowerCase();
+        const listGParent = list[i].parentNode.parentNode;
+        const listText = list[i].textContent;
 
-          if(listText.includes(search)){
-            listGParent.style.display = 'block';
-            searchedList.push(listGParent);
-          } else {
-            listGParent.style.display = 'none';
+        if(listText.includes(search)){
+          listGParent.style.display = 'block';
+          searchedList.push(listGParent);
+        } else {
+          listGParent.style.display = 'none';
           }
         }
         if (searchedList.length <= 0){
-          errorMessage();
+        errorMessage();
         } else if (searchedList <= 10){
-          showPage(studentList, 1);
-          removeLinks();
-
-        }
+        showPage(studentList, 1);
+        removeLinks();
+        removeErrorMessage();
+      } /*else {
+        showPage(studentList, 1);
+        appendPageLinks(studentList);
+        removeErrorMessage();
+      }*/
 
   });
 
@@ -172,5 +175,6 @@ search();
 
 showPage(studentList, 1);
 appendPageLinks(studentList);
+
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
