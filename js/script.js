@@ -120,10 +120,11 @@ const removeErrorMessage = () => {
 };
 
 
+
 const searchedList = [];
 
 const search = () => {
-  const list = document.getElementsByTagName('h3');
+  const list = document.querySelectorAll('h3');
 
   const searchDiv = document.createElement('div');
   const searchInput = document.createElement('input');
@@ -143,31 +144,23 @@ const search = () => {
         const search = searchInput.value.toLowerCase();
         const listGParent = list[i].parentNode.parentNode;
         const listText = list[i].textContent;
+        listGParent.style.display = 'none';
 
-        if(listText.includes(search)){
-          listGParent.style.display = 'block';
-          searchedList.push(listGParent);
-        } else {
-          listGParent.style.display = 'none';
-          }
-        }
-        if (searchedList.length <= 0){
-        errorMessage();
-        } else if (searchedList <= 10){
-        showPage(studentList, 1);
-        removeLinks();
-        removeErrorMessage();
-      } /*else {
-        showPage(studentList, 1);
-        appendPageLinks(studentList);
-        removeErrorMessage();
-      }*/
+    if(listText.includes(search)){
+      searchedList.push(listGParent);
 
-  });
+      }
+    }
 
+    if (searchedList.length <= 0){
+    errorMessage();
+    removeLinks();
+  }
+  appendPageLinks(searchedList);
+  showPage(searchedList, 1);
 
+})
 };
-
 search();
 
 
