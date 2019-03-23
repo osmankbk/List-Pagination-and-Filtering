@@ -76,6 +76,9 @@ const showPage = (list, page) => {
     for(let i = 0; i < numberOfPages; i++){
     const pageLi = document.createElement('li');
     const pageLink = document.createElement('a');
+      if(i + 1 === 0){
+        i.className = 'active';
+      }
       pageLink.href = '#';
       pageLink.textContent = i + 1;
       pageLi.appendChild(pageLink);
@@ -86,8 +89,7 @@ const showPage = (list, page) => {
       showPage(studentList, i + 1);
       const target = e.target;
       const links = document.getElementsByTagName('a');
-        if(target.tagName === 'A'){
-
+      if(target.tagName === 'A'){
       for(let i = 0; i < links.length; i++){
         links[i].classList.remove('active');
       }
@@ -98,30 +100,21 @@ const showPage = (list, page) => {
 }
 
 };
+
+const removeLinks = () => {
+  const removInk = document.querySelector('.pagination');
+    if(removInk){
+      removInk.parentNode.removeChild(removInk);
+    }
+};
+
 const errorMessage = () => {
-  const error = document.createElement('p');
+  const error = document.createElement('h2');
     error.className = 'error';
     error.textContent = `Name not found. Please enter a valid name and try again`;
     pageDiv.appendChild(error);
 };
 
-const removeLinks = () => {
-  const removeLinks = document.querySelector('.pagination');
-    if(removeLinks){
-      removeLinks.parentNode.removeChild(removeLinks);
-    }
-};
-
-const removeErrorMessage = () => {
-  const getError = document.querySelector('.error');
-    if(getError){
-      pageDiv.removeChild(getError);
-    }
-};
-
-
-
-const searchedList = [];
 
 const search = () => {
   const list = document.querySelectorAll('h3');
@@ -140,6 +133,15 @@ const search = () => {
     pageHeader.appendChild(searchDiv);
 
   searchButton.addEventListener('click', () => {
+    const searchedList = [];
+    const removeErrorMessage = () => {
+      const getError = document.querySelector('.error');
+        if(getError){
+          pageDiv.removeChild(getError);
+        }
+    };
+      removeErrorMessage();
+
       for(let i = 0; i < list.length; i++){
         const search = searchInput.value.toLowerCase();
         const listGParent = list[i].parentNode.parentNode;
