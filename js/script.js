@@ -77,7 +77,7 @@ const showPage = (list, page) => {
     const pageLi = document.createElement('li');
     const pageLink = document.createElement('a');
       if(i === 0){
-        i.className = 'active';
+        pageLink.className = 'active';
       }
       pageLink.href = '#';
       pageLink.textContent = i + 1;
@@ -131,7 +131,6 @@ const search = () => {
     searchDiv.appendChild(searchInput);
     searchDiv.appendChild(searchButton);
     pageHeader.appendChild(searchDiv);
-
   searchButton.addEventListener('click', () => {
     const searchedList = [];
     const removeErrorMessage = () => {
@@ -161,13 +160,14 @@ const search = () => {
   appendPageLinks(searchedList);
   showPage(searchedList, 1);
 
-})
+});
+    searchInput.addEventListener('keyup', () =>{
+      
+    })
 };
+
+
 search();
-
-
-
-
 showPage(studentList, 1);
 appendPageLinks(studentList);
 
