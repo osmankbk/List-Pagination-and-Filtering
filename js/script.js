@@ -76,7 +76,7 @@ const showPage = (list, page) => {
     for(let i = 0; i < numberOfPages; i++){
     const pageLi = document.createElement('li');
     const pageLink = document.createElement('a');
-      if(i + 1 === 0){
+      if(i === 0){
         i.className = 'active';
       }
       pageLink.href = '#';
