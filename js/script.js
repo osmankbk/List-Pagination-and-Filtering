@@ -1,3 +1,4 @@
+
 /******************************************
 Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
@@ -9,7 +10,6 @@ FSJS project 2 - List Filter and Pagination
 /***
    Add your global variables that store the DOM elements you will
    need to reference and/or manipulate.
-
    But be mindful of which variables should be global and which
    should be locally scoped to one of the two main functions you're
    going to create. A good general rule of thumb is if the variable
@@ -25,7 +25,6 @@ const pageHeader = document.querySelector('.page-header');
 /***
    Create the `showPage` function to hide all of the items in the
    list except for the ten you want to show.
-
    Pro Tips:
      - Keep in mind that with a list of 54 students, the last page
        will only display four.
@@ -116,22 +115,8 @@ const errorMessage = () => {
 };
 
 
-const search = () => {
+const filter = (input) => {
   const list = document.querySelectorAll('h3');
-
-  const searchDiv = document.createElement('div');
-  const searchInput = document.createElement('input');
-  const searchButton = document.createElement('button');
-
-    searchButton.textContent = 'Search';
-    searchInput.type = 'text';
-    searchInput.placeholder = 'Search for students';
-    searchDiv.className = 'student-search';
-
-    searchDiv.appendChild(searchInput);
-    searchDiv.appendChild(searchButton);
-    pageHeader.appendChild(searchDiv);
-  searchButton.addEventListener('click', () => {
     const searchedList = [];
     const removeErrorMessage = () => {
       const getError = document.querySelector('.error');
@@ -142,7 +127,7 @@ const search = () => {
       removeErrorMessage();
 
       for(let i = 0; i < list.length; i++){
-        const search = searchInput.value.toLowerCase();
+        const search = input.value.toLowerCase();
         const listGParent = list[i].parentNode.parentNode;
         const listText = list[i].textContent;
         listGParent.style.display = 'none';
@@ -160,11 +145,32 @@ const search = () => {
   appendPageLinks(searchedList);
   showPage(searchedList, 1);
 
-});
-    searchInput.addEventListener('keyup', () =>{
-      
-    })
+
 };
+
+
+const search = () => {
+  const searchDiv = document.createElement('div');
+  const searchInput = document.createElement('input');
+  const searchButton = document.createElement('button');
+
+    searchButton.textContent = 'Search';
+    searchInput.type = 'text';
+    searchInput.placeholder = 'Search for students';
+    searchDiv.className = 'student-search';
+
+    searchDiv.appendChild(searchInput);
+    searchDiv.appendChild(searchButton);
+    pageHeader.appendChild(searchDiv);
+  searchButton.addEventListener('click', (e) => {
+    filter(searchInput);
+  });
+  searchInput.addEventListener('keyup', (e) => {
+    filter(searchInput);
+  });
+};
+
+
 
 
 search();
