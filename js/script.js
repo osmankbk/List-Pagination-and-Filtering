@@ -53,7 +53,6 @@ const appendPageLinks = (list) => {
 		}
 	}
 	removePagination();
-
 	const numberOfPages = Math.ceil(list.length / 10);
 	const paginationDiv = createElement('div', 'className', 'pagination');
 	pageDiv.appendChild(paginationDiv);
